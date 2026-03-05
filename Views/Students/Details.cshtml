@@ -1,0 +1,98 @@
+﻿@model UniqCampusHub.Models.Student
+
+@{
+    ViewData["Title"] = "Student Details";
+}
+
+<h2>
+    Student Details
+</h2>
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+
+        <div style="background-color: #f9f9f9; padding: 25px; border-radius: 10px;">
+
+            <dl class="row">
+
+                <dt class="col-sm-4 fw-bold">Name</dt>
+                <dd class="col-sm-8">@Model.Name</dd>
+
+                <dt class="col-sm-4 fw-bold">Roll Number</dt>
+                <dd class="col-sm-8">@Model.RollNumber</dd>
+
+                <dt class="col-sm-4 fw-bold">Category</dt>
+                <dd class="col-sm-8">@Model.Category</dd>
+
+                <dt class="col-sm-4 fw-bold">Date of Birth</dt>
+                <dd class="col-sm-8">
+                    @Model.DateOfBirth.ToString("yyyy-MM-dd")
+                </dd>
+
+                <dt class="col-sm-4 fw-bold">Department</dt>
+                <dd class="col-sm-8">@Model.Department</dd>
+
+                <dt class="col-sm-4 fw-bold">Mobile Number</dt>
+                <dd class="col-sm-8">@Model.MobileNumber</dd>
+
+                <dt class="col-sm-4 fw-bold">Email</dt>
+                <dd class="col-sm-8">@Model.Gmail</dd>
+
+                <dt class="col-sm-4 fw-bold">Address</dt>
+                <dd class="col-sm-8">@Model.Address</dd>
+
+            </dl>
+
+            <div class="d-flex justify-content-between mt-4">
+
+                <a asp-action="Index"
+                   class="btn"
+                   style="background-color: #007BFF; color: white;">
+                    Back to List
+                </a>
+
+                <a asp-action="Edit"
+                   asp-route-id="@Model?.Id"
+                   class="btn"
+                   style="background-color: #FF5722; color: white;">
+                    Edit
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<!-- Back Button -->
+<a asp-action="Login" class="back-button">
+    &#8592; Back
+</a>
+
+<!-- Back Button -->
+<a asp-controller="Dashboard" asp-action="Index" class="back-button">
+    &#8592; Back
+</a>
+
+<style>
+    .back-button {
+        position: fixed; /* stays in place while scrolling */
+        left: 10px; /* distance from left edge */
+        top: 50%; /* vertical center */
+        transform: translateY(-50%); /* adjust for perfect centering */
+        background-color: #FF5722; /* orange/red */
+        color: white;
+        padding: 10px 15px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        transition: 0.2s;
+    }
+
+        .back-button:hover {
+            background-color: #e64a19;
+            color: white;
+            text-decoration: none;
+        }
+</style>

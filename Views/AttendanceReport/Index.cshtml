@@ -1,0 +1,51 @@
+﻿@model List<UniqCampusHub.Models.Student>
+
+@{
+    ViewData["Title"] = "Attendance Report";
+}
+
+<h2 style="text-align:center; color:#6f42c1; margin-bottom: 30px;">Attendance Report</h2>
+
+<div class="container mt-4" style="max-width: 600px; background-color: #f9f9f9; padding: 20px; border-radius: 10px;">
+    <form asp-action="ViewReport" method="post">
+        <div class="mb-3">
+            <label for="studentSelect" class="form-label fw-bold">Select Student</label>
+            <select name="studentId" id="studentSelect" class="form-control" required>
+                <option value="">-- Select Student --</option>
+                @foreach (var student in Model)
+                {
+                    <option value="@student.Id">@student.Name</option>
+                }
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">View Report</button>
+    </form>
+</div>
+
+<!-- Optional Back Button -->
+<a asp-controller="Dashboard" asp-action="Index" class="back-button">
+    &#8592; Back
+</a>
+
+<style>
+    .back-button {
+        position: fixed; /* stays in place while scrolling */
+        left: 10px; /* distance from left edge */
+        top: 50%; /* vertical center */
+        transform: translateY(-50%); /* perfect vertical centering */
+        background-color: #FF5722; /* orange/red */
+        color: white;
+        padding: 10px 15px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        transition: 0.2s;
+    }
+
+        .back-button:hover {
+            background-color: #e64a19;
+            color: white;
+            text-decoration: none;
+        }
+</style>

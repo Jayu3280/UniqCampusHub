@@ -1,0 +1,126 @@
+﻿@model UniqCampusHub.Models.Student
+
+@{
+    ViewData["Title"] = "Create Student";
+}
+
+<h2>
+    Create Student
+</h2>
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+
+        <div style="background-color: #f9f9f9; padding: 25px; border-radius: 10px;">
+
+            <form asp-action="Create">
+
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Name" class="fw-bold"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="RollNumber" class="fw-bold"></label>
+                    <input asp-for="RollNumber" class="form-control" />
+                    <span asp-validation-for="RollNumber" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Category" class="fw-bold"></label>
+                    <input asp-for="Category" class="form-control" />
+                    <span asp-validation-for="Category" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="DateOfBirth" class="fw-bold"></label>
+                    <input asp-for="DateOfBirth" type="date" class="form-control" />
+                    <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Department" class="fw-bold"></label>
+                    <input asp-for="Department" class="form-control" />
+                    <span asp-validation-for="Department" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="MobileNumber" class="fw-bold"></label>
+                    <input asp-for="MobileNumber" class="form-control" />
+                    <span asp-validation-for="MobileNumber" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Gmail" class="fw-bold"></label>
+                    <input asp-for="Gmail" class="form-control" />
+                    <span asp-validation-for="Gmail" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-4">
+                    <label asp-for="Address" class="fw-bold"></label>
+                    <input asp-for="Address" class="form-control" />
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+
+                <div class="d-flex justify-content-between">
+
+                    <a asp-action="Index"
+                       class="btn"
+                       style="background-color: #007BFF; color: white;">
+                        Back to List
+                    </a>
+
+                    <input type="submit"
+                           value="Create"
+                           class="btn"
+                           style="background-color: #FF5722; color: white;" />
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+</div>
+
+<!-- Back Button -->
+<a asp-action="Login" class="back-button">
+    &#8592; Back
+</a>
+
+<!-- Back Button -->
+<a asp-controller="Dashboard" asp-action="Index" class="back-button">
+    &#8592; Back
+</a>
+
+<style>
+    .back-button {
+        position: fixed; /* stays in place while scrolling */
+        left: 10px; /* distance from left edge */
+        top: 50%; /* vertical center */
+        transform: translateY(-50%); /* adjust for perfect centering */
+        background-color: #FF5722; /* orange/red */
+        color: white;
+        padding: 10px 15px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        transition: 0.2s;
+    }
+
+        .back-button:hover {
+            background-color: #e64a19;
+            color: white;
+            text-decoration: none;
+        }
+</style>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

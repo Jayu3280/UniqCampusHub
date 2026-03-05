@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.37012.4 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniqCampusHub", "UniqCampusHub.csproj", "{2C7D65DD-F38D-47E6-AAA3-3E21806C5FC1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2C7D65DD-F38D-47E6-AAA3-3E21806C5FC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C7D65DD-F38D-47E6-AAA3-3E21806C5FC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C7D65DD-F38D-47E6-AAA3-3E21806C5FC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C7D65DD-F38D-47E6-AAA3-3E21806C5FC1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A473E0D5-6885-49A4-B6AD-BD485027635E}
+	EndGlobalSection
+EndGlobal

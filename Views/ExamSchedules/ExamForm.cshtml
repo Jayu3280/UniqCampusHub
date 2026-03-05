@@ -1,0 +1,56 @@
+﻿@model UniqCampusHub.Models.ExamSchedule
+
+@{
+    var isEdit = Model.Id != 0;
+}
+
+<div class="container mt-4">
+    <div class="card shadow">
+        <div class="card-header text-white" style="background-color:#2c3e50;">
+            <h4>📅 @(isEdit ? "Edit Exam Schedule" : "Create Exam Schedule")</h4>
+        </div>
+
+        <div class="card-body">
+            <form asp-action="Save" method="post">
+                @if (isEdit)
+                {
+                    <input type="hidden" asp-for="Id" />
+                }
+
+                <!-- Exam Date -->
+                <div class="mb-3">
+                    <label class="form-label" asp-for="ExamDate">Exam Date</label>
+                    <input asp-for="ExamDate" type="date" class="form-control" />
+                    <span asp-validation-for="ExamDate" class="text-danger"></span>
+                </div>
+
+                <!-- Subject -->
+                <div class="mb-3">
+                    <label class="form-label" asp-for="Subject">Subject</label>
+                    <select asp-for="Subject" class="form-control" asp-items="@(new SelectList(ViewBag.Subjects))">
+                        <option value="">-- Select Subject --</option>
+                    </select>
+                    <span asp-validation-for="Subject" class="text-danger"></span>
+                </div>
+
+                <!-- Start Time -->
+                <div class="mb-3">
+                    <label class="form-label" asp-for="StartTime">Start Time</label>
+                    <input asp-for="StartTime" type="time" class="form-control" />
+                    <span asp-validation-for="StartTime" class="text-danger"></span>
+                </div>
+
+                <!-- End Time -->
+                <div class="mb-3">
+                    <label class="form-label" asp-for="EndTime">End Time</label>
+                    <input asp-for="EndTime" type="time" class="form-control" />
+                    <span asp-validation-for="EndTime" class="text-danger"></span>
+                </div>
+
+                <!-- Buttons -->
+                <button type="submit" class="btn btn-success">✔ @(isEdit ? "Update" : "Submit")</button>
+                <a asp-action="Index" class="btn btn-secondary">⬅ Back</a>
+            </form>
+        </div>
+    </div>
+</div>

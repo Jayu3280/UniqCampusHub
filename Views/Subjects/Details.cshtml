@@ -1,0 +1,68 @@
+﻿@model UniqCampusHub.Models.Subject
+
+@{
+    ViewData["Title"] = "Subject Details";
+}
+
+<h1>Subject Details</h1>
+
+<!-- Container with background color -->
+<div style="background-color:#f0f4c3; padding:20px; border-radius:10px; box-shadow: 2px 2px 8px #ccc;">
+    <h4>Subject Information</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.SubjectName)
+        </dt>
+        <dd class="col-sm-9" style="background-color:#fff9c4; padding:5px; border-radius:5px;">
+            @Html.DisplayFor(model => model.SubjectName)
+        </dd>
+
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.LectureTime)
+        </dt>
+        <dd class="col-sm-9" style="background-color:#fff9c4; padding:5px; border-radius:5px;">
+            @Html.DisplayFor(model => model.LectureTime)
+        </dd>
+
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.LectureCoordinate)
+        </dt>
+        <dd class="col-sm-9" style="background-color:#fff9c4; padding:5px; border-radius:5px;">
+            @Html.DisplayFor(model => model.LectureCoordinate)
+        </dd>
+    </dl>
+</div>
+<!-- Back Button -->
+<a asp-controller="Dashboard" asp-action="Index" class="back-button">
+    &#8592; Back
+</a>
+
+<style>
+    .back-button {
+        position: fixed; /* stays in place while scrolling */
+        left: 10px; /* distance from left edge */
+        top: 50%; /* vertical center */
+        transform: translateY(-50%); /* adjust for perfect centering */
+        background-color: #FF5722; /* orange/red */
+        color: white;
+        padding: 10px 15px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        transition: 0.2s;
+    }
+
+        .back-button:hover {
+            background-color: #e64a19;
+            color: white;
+            text-decoration: none;
+        }
+</style>
+
+<!-- Action buttons with colors -->
+<div style="margin-top:15px;">
+    <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-warning" style="background-color:#ffb74d; color:white; border:none; margin-right:5px;">Edit</a>
+    <a asp-action="Index" class="btn btn-info" style="background-color:#4db6ac; color:white; border:none;">Back to List</a>
+</div>

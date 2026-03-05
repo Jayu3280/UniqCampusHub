@@ -1,0 +1,66 @@
+﻿@model IEnumerable<UniqCampusHub.Models.ExamSchedule>
+
+<h2 style="color:#2c3e50;">📅 Exam Timetable</h2>
+
+<a asp-action="Create" class="btn btn-primary mb-3">➕ Add Schedule</a>
+
+<table class="table table-bordered table-hover">
+    <thead style="background-color:#2c3e50; color:white;">
+        <tr>
+            <th>Date</th>
+            <th>Subject</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr style="background-color:#ecf0f1;">
+                <td>@item.ExamDate.ToShortDateString()</td>
+                <td>@item.Subject</td>
+                <td>@item.StartTime</td>
+                <td>@item.EndTime</td>
+
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn" style="background-color:#ffb74d; color:white; margin-right:5px;">Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn" style="background-color:#4db6ac; color:white; margin-right:5px;">Details</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn" style="background-color:#e57373; color:white;">Delete</a>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+
+</table>
+<!-- Back Button -->
+<a asp-controller="Dashboard" asp-action="Index" class="back-button">&#8592; Back</a>
+
+<style>
+    .back-button {
+        position: fixed;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: #FF5722;
+        color: white;
+        padding: 10px 15px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        transition: 0.2s;
+    }
+
+        .back-button:hover {
+            background-color: #e64a19;
+            color: white;
+            text-decoration: none;
+        }
+</style>
+
+<a asp-action="DownloadTimetable" class="btn btn-danger mb-3">
+    ⬇ Download Timetable PDF
+</a>

@@ -1,0 +1,84 @@
+﻿@model UniqCampusHub.Models.Attendance
+
+@{
+    ViewData["Title"] = " Attendance";
+}
+
+<h2>Mark Attendance</h2>
+
+<form asp-action="Create" method="post">
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <label asp-for="StudentName" class="control-label">Student Name</label>
+        <input asp-for="StudentName" class="form-control" />
+        <span asp-validation-for="StudentName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="SubjectName" class="control-label">Subject</label>
+        <select asp-for="SubjectName" class="form-control">
+            <option value="">-- Select Subject --</option>
+            <option>Math</option>
+            <option>Science</option>
+            <option>English</option>
+        </select>
+        <span asp-validation-for="SubjectName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DateTime" class="control-label">Date & Time</label>
+        <input asp-for="DateTime" type="datetime-local" class="form-control" />
+        <span asp-validation-for="DateTime" class="text-danger"></span>
+    </div>
+
+    <div class="form-check">
+        <input class="form-check-input" asp-for="IsPresent" />
+        <label class="form-check-label" asp-for="IsPresent">Present</label>
+    </div>
+
+    <br />
+    <button type="submit" class="btn btn-success">Submit</button>
+</form>
+
+<br />
+<a asp-action="Index" class="btn btn-secondary">Back to List</a>
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-success mt-2">@ViewBag.Message</div>
+}
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+<!-- Back Button -->
+<a asp-controller="Dashboard" asp-action="Index" class="back-button">
+    &#8592; Back
+</a>
+
+<style>
+    .back-button {
+        position: fixed; /* stays in place while scrolling */
+        left: 10px; /* distance from left edge */
+        top: 50%; /* vertical center */
+        transform: translateY(-50%); /* adjust for perfect centering */
+        background-color: #FF5722; /* orange/red */
+        color: white;
+        padding: 10px 15px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        transition: 0.2s;
+    }
+
+        .back-button:hover {
+            background-color: #e64a19;
+            color: white;
+            text-decoration: none;
+        }
+</style>

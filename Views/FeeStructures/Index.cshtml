@@ -1,0 +1,71 @@
+﻿@model IEnumerable<UniqCampusHub.Models.FeeStructure>
+
+@{
+    ViewData["Title"] = "Fee Structure";
+}
+
+<h2>Fee Structure</h2>
+
+<!-- Container with colored background -->
+<div style="background-color:#f0f8ff; padding:20px; border-radius:10px;">
+
+    <table class="table table-bordered table-striped table-hover">
+        <thead style="background-color:#4682b4; color:white;">
+            <tr>
+                <th>Student Name</th>
+                <th>Roll Number</th>
+                <th>Total Fee</th>
+                <th>Collected Fee</th>
+                <th>Remaining Fee</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody style="background-color:#e6f2ff;">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.StudentName</td>
+                    <td>@item.RollNumber</td>
+                    <td>@item.TotalFee.ToString("C")</td>  <!-- Currency format -->
+                    <td>@item.CollectedFee.ToString("C")</td>
+                    <td>@item.RemainingFee.ToString("C")</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn" style="background-color:#FFA500; color:white; margin-right:5px;">Edit</a>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn" style="background-color:#17a2b8; color:white; margin-right:5px;">Details</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <a asp-action="Create" class="btn" style="background-color:#28a745; color:white; margin-top:10px;">Add New Fee Structure</a>
+</div>
+
+<!-- Back Button -->
+<a asp-controller="Dashboard" asp-action="Index" class="back-button">
+    &#8592; Back
+</a>
+
+<style>
+    .back-button {
+        position: fixed; /* stays in place while scrolling */
+        left: 10px; /* distance from left edge */
+        top: 50%; /* vertical center */
+        transform: translateY(-50%); /* adjust for perfect centering */
+        background-color: #FF5722; /* orange/red */
+        color: white;
+        padding: 10px 15px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        transition: 0.2s;
+    }
+
+        .back-button:hover {
+            background-color: #e64a19;
+            color: white;
+            text-decoration: none;
+        }
+</style>

@@ -1,0 +1,82 @@
+﻿@model UniqCampusHub.Models.Subject
+
+@{
+    ViewData["Title"] = "Edit Subject";
+}
+
+<h1>Edit Subject</h1>
+
+<h4>Subject Details</h4>
+<hr />
+
+<!-- Container with colored background -->
+<div class="row">
+    <div class="col-md-6" style="background-color:#e1f5fe; padding:20px; border-radius:10px; box-shadow: 2px 2px 8px #ccc;">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+
+            <div class="form-group">
+                <label asp-for="SubjectName" class="control-label"></label>
+                <select asp-for="SubjectName" class="form-control" asp-items="ViewBag.Subjects">
+                    <option value="">-- Select Subject --</option>
+                </select>
+                <span asp-validation-for="SubjectName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="LectureTime" class="control-label"></label>
+                <input asp-for="LectureTime" class="form-control" style="background-color:#fff8e1;" />
+                <span asp-validation-for="LectureTime" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="LectureCoordinate" class="control-label"></label>
+                <input asp-for="LectureCoordinate" class="form-control" style="background-color:#fff8e1;" />
+                <span asp-validation-for="LectureCoordinate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Save Changes" class="btn btn-warning" style="background-color:#ffb74d; color:white; border:none;" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Back Button -->
+<a asp-controller="Dashboard" asp-action="Index" class="back-button">
+    &#8592; Back
+</a>
+
+<style>
+    .back-button {
+        position: fixed; /* stays in place while scrolling */
+        left: 10px; /* distance from left edge */
+        top: 50%; /* vertical center */
+        transform: translateY(-50%); /* adjust for perfect centering */
+        background-color: #FF5722; /* orange/red */
+        color: white;
+        padding: 10px 15px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        transition: 0.2s;
+    }
+
+        .back-button:hover {
+            background-color: #e64a19;
+            color: white;
+            text-decoration: none;
+        }
+</style>
+
+<div style="margin-top:10px;">
+    <a asp-action="Index" class="btn btn-info" style="background-color:#4db6ac; color:white; border:none;">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

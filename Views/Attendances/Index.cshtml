@@ -1,0 +1,129 @@
+﻿@model List<UniqCampusHub.Models.Attendance>
+
+@{
+    ViewData["Title"] = "Attendance";
+    var students = ViewBag.Students as List<UniqCampusHub.Models.Student>;
+}
+
+<h2>Students Attendance</h2>
+
+<div style="background-color: #f9f9f9; padding: 20px; border-radius: 10px;">
+
+    <!-- Controls Above Table -->
+    <div class="row mb-3 g-3">
+        <div class="col-md-6">
+            <label for="subjectSelect" class="form-label fw-bold">Select Subject</label>
+            <select id="subjectSelect" class="form-control">
+                <option value="C#">C#</option>
+                <option value="C#(Practical)">C#(Practical)</option>
+                <option value="Java Programming">Java Programming</option>
+                <option value="Java Programming (Practical)">Java Programming (Practical)</option>
+                <option value="Python">Python</option>
+                <option value="Python (Practical)">Python (Practical)</option>
+            </select>
+        </div>
+        <div class="col-md-6">
+            <label for="dateTimePicker" class="form-label fw-bold">Select Date & Time</label>
+            <input type="datetime-local" id="dateTimePicker" class="form-control" />
+        </div>
+    </div>
+
+    <form asp-action="Create" method="post">
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead style="background-color: #007BFF; color: white;">
+                    <tr>
+                        <th>Student Name</th>
+                        <th>Subject</th>
+                        <th>Date & Time</th>
+                        <th class="text-center">Present</th>
+                       
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < students.Count; i++)
+                    {
+                        <tr style="background-color: #E3F2FD;">
+                            <td>
+                                @students[i].Name
+                                <input type="hidden" name="[@i].StudentName" value="@students[i].Name" />
+                            </td>
+                            <td>
+                                <input type="text" name="[@i].SubjectName" class="form-control subject-input" readonly />
+                            </td>
+                            <td>
+                                <input type="text" name="[@i].DateTime" class="form-control datetime-input" readonly />
+                            </td>
+                            <td class="text-center">
+                                <input type="checkbox" name="[@i].IsPresent" value="true" />
+                            </td>
+                           
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="text-end mt-3">
+            <button type="submit" class="btn" style="background-color: #FF5722; color: white;">Submit Attendance</button>
+        </div>
+    </form>
+
+    @if (ViewBag.Message != null)
+    {
+        <div class="alert alert-success mt-3">@ViewBag.Message</div>
+    }
+</div>
+
+@section Scripts {
+    <script>
+        const subjectSelect = document.getElementById('subjectSelect');
+        const dateTimePicker = document.getElementById('dateTimePicker');
+        const subjectInputs = document.querySelectorAll('.subject-input');
+        const datetimeInputs = document.querySelectorAll('.datetime-input');
+
+        function updateTable() {
+            subjectInputs.forEach(input => input.value = subjectSelect.value);
+
+            const dt = new Date(dateTimePicker.value);
+            if (!isNaN(dt)) {
+                const hours = dt.getHours();
+                const minutes = dt.getMinutes().toString().padStart(2, '0');
+                const ampm = hours >= 12 ? 'PM' : 'AM';
+                const formattedHours = ((hours + 11) % 12 + 1).toString().padStart(2, '0');
+                const formatted = `${dt.getFullYear()}-${(dt.getMonth() + 1).toString().padStart(2,'0')}-${dt.getDate().toString().padStart(2,'0')} ${formattedHours}:${minutes} ${ampm}`;
+                datetimeInputs.forEach(input => input.value = formatted);
+            }
+        }
+
+        subjectSelect.addEventListener('change', updateTable);
+        dateTimePicker.addEventListener('change', updateTable);
+        window.addEventListener('DOMContentLoaded', updateTable);
+    </script>
+}
+
+<!-- Back Button -->
+<a asp-controller="Dashboard" asp-action="Index" class="back-button">&#8592; Back</a>
+
+<style>
+    .back-button {
+        position: fixed;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: #FF5722;
+        color: white;
+        padding: 10px 15px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        transition: 0.2s;
+    }
+
+        .back-button:hover {
+            background-color: #e64a19;
+            color: white;
+            text-decoration: none;
+        }
+</style>

@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "Professor Login";
+}
+
+<h2>Professor Login</h2>
+
+@if (ViewBag.Error != null)
+{
+    <div style="color:red;">@ViewBag.Error</div>
+}
+
+<form asp-action="Login" method="post">
+    @Html.AntiForgeryToken()
+    <div>
+        <label>Username:</label>
+        <input type="text" name="username" required />
+    </div>
+    <div>
+        <label>Password:</label>
+        <input type="password" name="password" required />
+    </div>
+    <button type="submit">Login</button>
+</form>

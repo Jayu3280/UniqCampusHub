@@ -1,0 +1,59 @@
+﻿@{
+    ViewData["Title"] = "Create Fee Structure";
+}
+
+<h2>Create Fee Structure</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label>Student</label>
+        <select name="StudentId" class="form-control" asp-items="ViewBag.Students">
+            <option value="">-- Select Student --</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Total Fee</label>
+        <input name="TotalFee" class="form-control" type="number" step="0.01" value="60000" required />
+    </div>
+
+    <div class="form-group">
+        <label>Collected Fee</label>
+        <input name="CollectedFee" class="form-control" type="number" step="0.01" required />
+    </div>
+
+    <div class="form-group">
+        <label>Remaining Fee</label>
+        <input class="form-control" type="number" step="0.01" value="0" readonly />
+    </div>
+
+    <button type="submit" class="btn btn-success mt-2">Submit</button>
+</form>
+
+<!-- Back Button -->
+<a asp-controller="Dashboard" asp-action="Index" class="back-button">
+    &#8592; Back
+</a>
+
+<style>
+    .back-button {
+        position: fixed; /* stays in place while scrolling */
+        left: 10px; /* distance from left edge */
+        top: 50%; /* vertical center */
+        transform: translateY(-50%); /* adjust for perfect centering */
+        background-color: #FF5722; /* orange/red */
+        color: white;
+        padding: 10px 15px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        transition: 0.2s;
+    }
+
+        .back-button:hover {
+            background-color: #e64a19;
+            color: white;
+            text-decoration: none;
+        }
+</style>

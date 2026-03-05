@@ -1,0 +1,119 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<style>
+    /* General page styling */
+    body {
+        background-color: #f5f7fa;
+        font-family: Arial, sans-serif;
+        padding: 20px;
+    }
+
+    /* Page title */
+    p.page-title {
+        font-weight: bold;
+        font-size: 20px;
+        margin: 0;
+    }
+
+    /* Dashboard container */
+    .dashboard-diagonal {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+        /* Zigzag offsets */
+        .dashboard-diagonal a:nth-child(1) {
+            margin-left: 0px;
+        }
+
+        .dashboard-diagonal a:nth-child(2) {
+            margin-left: 200px;
+        }
+
+        .dashboard-diagonal a:nth-child(3) {
+            margin-left: 400px;
+        }
+
+        .dashboard-diagonal a:nth-child(4) {
+            margin-left: 600px;
+        }
+
+        .dashboard-diagonal a:nth-child(5) {
+            margin-left: 800px;
+        }
+
+        .dashboard-diagonal a:nth-child(6) {
+            margin-left: 1000px;
+        }
+
+    /* Dashboard buttons */
+    .dashboard-button {
+        width: 220px;
+        padding: 20px;
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        text-decoration: none;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+        color: white;
+    }
+
+        .dashboard-button:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+        }
+
+    /* Button colors */
+    .student-btn {
+        background-color: #28a745;
+    }
+    /* Green */
+    .attendance-btn {
+        background-color: #17a2b8;
+    }
+    /* Cyan */
+    .attendancereport-btn {
+        background-color: #6f42c1;
+    }
+    /* Purple */
+    .fee-btn {
+        background-color: #ffc107;
+        color: #333;
+    }
+    /* Yellow */
+    .subject-btn {
+        background-color: #FF69B4;
+    }
+    /* Pink */
+    .examschedules-btn {
+        background-color: #0000FF;
+    }
+    /* Blue */
+</style>
+
+<!-- Header: Title + Logout -->
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <p class="page-title">
+        Bachelor of Computer Applications (BCA) III Year
+    </p>
+    <form asp-area="" asp-controller="Account" asp-action="Logout" method="post">
+        <button type="submit" class="btn btn-danger">Logout</button>
+    </form>
+</div>
+
+<!-- Dashboard Buttons -->
+<div class="dashboard-diagonal">
+    <a class="dashboard-button student-btn" asp-controller="Students" asp-action="Index">Student Information</a>
+    <a class="dashboard-button attendance-btn" asp-controller="Attendances" asp-action="Index">Attendance</a>
+    <a class="dashboard-button attendancereport-btn" asp-controller="AttendanceReport" asp-action="Index">Attendance Report View</a>
+    <a class="dashboard-button fee-btn" asp-controller="FeeStructures" asp-action="Index">Fee Structure</a>
+    <a class="dashboard-button subject-btn" asp-controller="Subjects" asp-action="Index">Faculty Management</a>
+    <a class="dashboard-button examschedules-btn" asp-controller="ExamSchedules" asp-action="Index">Exam Schedule</a>
+</div>

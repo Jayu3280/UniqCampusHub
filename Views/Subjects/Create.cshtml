@@ -1,0 +1,91 @@
+﻿@model UniqCampusHub.Models.Subject
+
+@{
+    ViewData["Title"] = "Create Subject";
+}
+
+<h1>Create Subject</h1>
+
+<h4>Subject Details</h4>
+<hr />
+
+<!-- Container with light background -->
+<div class="row">
+    <div class="col-md-6" style="background-color:#f3e5f5; padding:20px; border-radius:10px; box-shadow: 2px 2px 8px #ccc;">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group mb-3">
+                <label asp-for="SubjectName" class="control-label">Subject</label>
+                <select asp-for="SubjectName" class="form-control">
+                    <option value="">-- Select Subject --</option>
+                    <option value="C#">C#</option>
+                    <option value="C#(Practical)">C#(Practical)</option>
+                    <option value="Java Programming">Java Programming</option>
+                    <option value="Java Programming (Practical)">Java Programming (Practical)</option>
+                    <option value="Python">Python</option>
+                    <option value="Python (Practical)">Python (Practical)</option>
+                </select>
+                <span asp-validation-for="SubjectName" class="text-danger"></span>
+
+            </div>
+
+
+
+
+            <div class="form-group mb-3">
+                <label asp-for="LectureTime" class="control-label">Date & Time</label>
+                <input asp-for="LectureTime" type="datetime-local" class="form-control" style="background-color:#fff0f5;" />
+                <span asp-validation-for="LectureTime" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="LectureCoordinate" class="control-label"></label>
+                <input asp-for="LectureCoordinate" class="form-control" style="background-color:#fff0f5;" />
+                <span asp-validation-for="LectureCoordinate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create Subject" class="btn btn-success" style="background-color:#8e24aa; color:white; border:none;" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Back Button -->
+<a asp-controller="Dashboard" asp-action="Index" class="back-button">
+    &#8592; Back
+</a>
+
+<style>
+    .back-button {
+        position: fixed; /* stays in place while scrolling */
+        left: 10px; /* distance from left edge */
+        top: 50%; /* vertical center */
+        transform: translateY(-50%); /* adjust for perfect centering */
+        background-color: #FF5722; /* orange/red */
+        color: white;
+        padding: 10px 15px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        transition: 0.2s;
+    }
+
+        .back-button:hover {
+            background-color: #e64a19;
+            color: white;
+            text-decoration: none;
+        }
+</style>
+
+<div style="margin-top:10px;">
+    <a asp-action="Index" class="btn btn-info" style="background-color:#4db6ac; color:white; border:none;">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

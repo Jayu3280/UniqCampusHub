@@ -1,0 +1,68 @@
+﻿@model IEnumerable<UniqCampusHub.Models.Subject>
+
+@{
+    ViewData["Title"] = "Subjects";
+}
+
+<h2>Subjects Table</h2>
+
+<!-- Container with colored background -->
+<div style="background-color:#f9f9f9; padding:20px; border-radius:10px; box-shadow: 2px 2px 8px #ccc;">
+
+    <table class="table table-bordered table-striped">
+        <thead style="background-color:#6a1b9a; color:white;">
+            <tr>
+                <th>Subject Name</th>
+                <th>Lecture Time</th>
+                <th>Lecture Coordinator</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody style="background-color:#f3e5f5;">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.SubjectName</td>
+                    <td>@item.LectureTime</td>
+                    <td>@item.LectureCoordinate</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn" style="background-color:#ffb74d; color:white; margin-right:5px;">Edit</a>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn" style="background-color:#4db6ac; color:white; margin-right:5px;">Details</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn" style="background-color:#e57373; color:white;">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <a asp-action="Create" class="btn" style="background-color:#81c784; color:white; margin-top:10px;">Add New Subject</a>
+
+</div>
+
+<!-- Back Button -->
+<a asp-controller="Dashboard" asp-action="Index" class="back-button">
+    &#8592; Back
+</a>
+
+<style>
+    .back-button {
+        position: fixed; /* stays in place while scrolling */
+        left: 10px; /* distance from left edge */
+        top: 50%; /* vertical center */
+        transform: translateY(-50%); /* adjust for perfect centering */
+        background-color: #FF5722; /* orange/red */
+        color: white;
+        padding: 10px 15px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        transition: 0.2s;
+    }
+
+        .back-button:hover {
+            background-color: #e64a19;
+            color: white;
+            text-decoration: none;
+        }
+</style>

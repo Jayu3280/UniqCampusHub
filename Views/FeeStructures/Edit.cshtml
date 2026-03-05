@@ -1,0 +1,98 @@
+﻿@model UniqCampusHub.Models.FeeStructure
+
+@{
+    ViewData["Title"] = "Edit Fee Structure";
+}
+
+<h2>Edit Fee Structure</h2>
+
+<!-- Container with colored background -->
+<div style="background-color:#fff3e0; padding:20px; border-radius:10px; max-width:500px;">
+
+    <form asp-action="Edit" method="post">
+        <input type="hidden" asp-for="Id" />
+
+        <div class="form-group">
+            <label asp-for="StudentName"></label>
+            <input asp-for="StudentName" class="form-control" readonly />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="RollNumber"></label>
+            <input asp-for="RollNumber" class="form-control" readonly />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="TotalFee"></label>
+            <input asp-for="TotalFee" class="form-control" id="TotalFee" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="CollectedFee"></label>
+            <input asp-for="CollectedFee" class="form-control" id="CollectedFee" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="RemainingFee"></label>
+            <input asp-for="RemainingFee" class="form-control" id="RemainingFee" readonly />
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn" style="background-color:#FFA500; color:white;">Save</button>
+            <a asp-action="Index" class="btn" style="background-color:#17a2b8; color:white; margin-left:5px;">Back to List</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        // Automatically calculate RemainingFee
+        const totalFeeInput = document.getElementById("TotalFee");
+        const collectedFeeInput = document.getElementById("CollectedFee");
+        const remainingFeeInput = document.getElementById("RemainingFee");
+
+        function updateRemainingFee() {
+            const total = parseFloat(totalFeeInput.value) || 0;
+            const collected = parseFloat(collectedFeeInput.value) || 0;
+            remainingFeeInput.value = (total - collected).toFixed(2);
+        }
+
+        totalFeeInput.addEventListener("input", updateRemainingFee);
+        collectedFeeInput.addEventListener("input", updateRemainingFee);
+
+        // Initialize on page load
+        updateRemainingFee();
+    </script>
+}
+
+<!-- Back Button -->
+<a asp-controller="Dashboard" asp-action="Index" class="back-button">
+    &#8592; Back
+</a>
+
+<style>
+    .back-button {
+        position: fixed; /* stays in place while scrolling */
+        left: 10px; /* distance from left edge */
+        top: 50%; /* vertical center */
+        transform: translateY(-50%); /* adjust for perfect centering */
+        background-color: #FF5722; /* orange/red */
+        color: white;
+        padding: 10px 15px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        transition: 0.2s;
+    }
+
+        .back-button:hover {
+            background-color: #e64a19;
+            color: white;
+            text-decoration: none;
+        }
+</style>
