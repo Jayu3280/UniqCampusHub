@@ -14,18 +14,18 @@ namespace UniqCampusHub.Controllers
             _context = context;
         }
 
-        // GET: /Attendances/Index
+        // GET: /Attendances/Index  
         public IActionResult Index()
         {
             var students = _context.Students.ToList();
             ViewBag.Students = students;
 
-            // Empty attendance list for model binding
+            // Empty attendance list for model binding  
             var model = students.Select(s => new Attendance { StudentName = s.Name }).ToList();
             return View(model);
         }
 
-        // POST: /Attendances/Create
+        // POST: /Attendances/Create  
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(List<Attendance> attendances)
@@ -44,6 +44,7 @@ namespace UniqCampusHub.Controllers
             return View("Index", attendances);
         }
 
-       
+
     }
+
 }
